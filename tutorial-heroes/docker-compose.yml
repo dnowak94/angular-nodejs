@@ -1,0 +1,48 @@
+services:
+  backend:
+    build:
+      context: './backend'
+      dockerfile: Dockerfile
+    ports:
+    - "3000:3000"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=3306
+      - MYSQL_DATABASE=hero
+      - MYSQL_USER=hero
+      - MYSQL_PASSWORD=hero
+  frontend:
+    build: 
+      context: './angular-tour-of-heroes'
+      dockerfile: docker/Dockerfile
+      args:
+        PROFILE: ${PROFILE}
+    environment:
+      - BACKEND=http://backend:3000
+    ports:
+    - "8080:80"
+  db:
+    command: --default-authentication-plugin=mysql_native_password
+    build:
+      context: './db'
+      dockerfile: Dockerfile
+    environment:
+      - MYSQL_DATABASE=hero
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_USER=hero
+      - MYSQL_PASSWORD=hero
+    volumes:
+     - "./db/data:/var/lib/mysql"
+     - "./db/sql:/docker-entrypoint-initdb.d/"
+    ports:
+    - "3306:3306"
+  db-admin:
+    image: phpmyadmin
+    environment:
+      - PMA_HOST=db
+      - MYSQL_DATABASE=hero
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_USER=hero
+      - MYSQL_PASSWORD=hero
+    ports:
+      - "8081:80"
