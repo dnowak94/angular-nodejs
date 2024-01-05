@@ -14,7 +14,7 @@ public class ProductManager {
 
     public ProductManager() {
         Client client = ClientBuilder.newClient();
-        target = client.target(UriBuilder.fromUri("http://web-shop-products:8081/").build());
+        target = client.target(UriBuilder.fromUri("http://webshop-products:8081/").build());
     }
 
     public void deleteProductsByCategoryId(int id) {

@@ -15,7 +15,7 @@ public class CategoryManager {
 
     public CategoryManager() {
         Client client = ClientBuilder.newClient();
-        target = client.target(UriBuilder.fromUri("http://web-shop-categories:8082/").build());
+        target = client.target(UriBuilder.fromUri("http://webshop-categories:8082/").build());
         //target = client.target(UriBuilder.fromUri("http://localhost:8082/").build());
     }
 

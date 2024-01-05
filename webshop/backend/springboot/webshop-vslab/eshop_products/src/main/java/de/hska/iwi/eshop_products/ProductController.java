@@ -44,17 +44,23 @@ public class ProductController implements ProductManager {
     } else if (searchValue.isPresent() || minPrice.isPresent() || maxPrice.isPresent()) {
       List<Product> products = this.getProductsForSearchValues(searchValue, minPrice, maxPrice);
       for (int i = 0; i < products.size(); i++) {
-        Product temp = products.get(i);
-        temp.setCategory(categoryManager.getById(products.get(i).getCategoryId()));
-        products.set(i, temp);
+        Product product = products.get(i);
+        Category category = categoryManager.getById(product.getCategoryId());
+        if(category != null) {
+          product.setCategory(category);
+        }
+        products.set(i, product);
       }
       return products;
     } else {
       List<Product> products = this.getProducts();
       for (int i = 0; i < products.size(); i++) {
-        Product temp = products.get(i);
-        temp.setCategory(categoryManager.getById(products.get(i).getCategoryId()));
-        products.set(i, temp);
+        Product product = products.get(i);
+        Category category = categoryManager.getById(product.getCategoryId());
+        if(category != null) {
+          product.setCategory(category);
+        }
+        products.set(i, product);
       }
       return products;
     }
