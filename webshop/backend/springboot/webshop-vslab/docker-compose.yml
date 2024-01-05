@@ -20,6 +20,9 @@ services:
       - MYSQL_DATABASE=categories
     ports:
       - "8082:8082"
+    networks:
+      - backend-tier
+      - front-tier
   db-products:
     image: mysql:8.2.0-oraclelinux8
     command: --default-authentication-plugin=mysql_native_password
