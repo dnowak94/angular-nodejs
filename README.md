@@ -1,1 +1,6 @@
 # angular-nodejs
+This projects purpose is to implement the [Tour of Heroes tutorial application from Angular](https://angular.io/tutorial/tour-of-heroes) which is using a [NodeJS backend](tutorial-heroes/backend) and a Angular frontend representing a simple [webshop](webshop) application which is using [Spring Boot Microservices](webshop/backend/springboot/webshop-vslab).
+## Description
+The [Tour of Heroes tutorial application](tutorial-heroes) uses as opposite to the original tutorial a NodeJS backend implemented with [ExpressJS](https://expressjs.com/) and [Sequelize](https://sequelize.org/) ORM backed by a MySQL database.
+
+The [webshop](webshop) backend application uses Spring Boot and Docker containers to deliver a [product](webshop/backend/springboot/webshop-vslab/eshop_product) and a [category](webshop/backend/springboot/webshop-vslab/eshop_category) microservice. Each service is connected to a separate MySQL database, each running as a Docker container and saving the data locally on the host machine. The frontend is implemented using Angular and as for now only the product backend is used for fetching and displaying a product list. The Create, Update, Delete operations will be added to the frontend later. Secondly the category CRUD operations need to be implemented in the frontend.
