@@ -9,7 +9,7 @@ import { ErrorHandling } from '../errorHandling';
   providedIn: 'root'
 })
 export class ProductsService {
-  private backendURL:string = `${environment.API_URL}/products`;
+  private backendURL:string = `${environment.API_URL}/product`;
   constructor(private http:HttpClient, private errorHandling:ErrorHandling) {}
 
   getProducts(): Observable<Product[]> {

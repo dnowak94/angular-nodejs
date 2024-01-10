@@ -1,55 +1,55 @@
 services:
-  webshop-products:
-    image: webshop-products
+  webshop-product:
+    image: webshop-product
     env_file: ./.env.mysql
     environment:
-      - DB_HOST=db-products
-      - MYSQL_DATABASE=products
+      - DB_HOST=db-product
+      - MYSQL_DATABASE=product
       - DB_PORT=3306
     ports:
     - "8081:8081"
     networks:
       - backend-tier
       - front-tier
-  webshop-categories:
-    image: webshop-categories
+  webshop-category:
+    image: webshop-category
     env_file: ./.env.mysql
     environment:
-      - DB_HOST=db-categories
+      - DB_HOST=db-category
       - DB_PORT=3307
-      - MYSQL_DATABASE=categories
+      - MYSQL_DATABASE=category
     ports:
       - "8082:8082"
     networks:
       - backend-tier
       - front-tier
-  db-products:
+  db-product:
     image: mysql:8.2.0-oraclelinux8
     command: --default-authentication-plugin=mysql_native_password
     env_file:
       - "./.env.mysql"
     environment:
-      - MYSQL_DATABASE=products
+      - MYSQL_DATABASE=product
       - MYSQL_ROOT_PASSWORD=admin
     volumes:
-      - "./db/sql/products:/docker-entrypoint-initdb.d"
-      - "./db/data/products:/var/lib/mysql"
+      - "./db/sql/product:/docker-entrypoint-initdb.d"
+      - "./db/data/product:/var/lib/mysql"
     ports:
       - "3306:3306"
     networks:
       - backend-tier
-  db-categories:
+  db-category:
     image: mysql:8.2.0-oraclelinux8
     command: --default-authentication-plugin=mysql_native_password
     env_file:
       - "./.env.mysql"
     environment:
-      - MYSQL_DATABASE=categories
+      - MYSQL_DATABASE=category
       - MYSQL_ROOT_PASSWORD=admin
       - MYSQL_TCP_PORT=3307
     volumes:
-      - "./db/sql/categories:/docker-entrypoint-initdb.d"
-      - "./db/data/categories:/var/lib/mysql"
+      - "./db/sql/category:/docker-entrypoint-initdb.d"
+      - "./db/data/category:/var/lib/mysql"
     ports:
       - "3307:3307"
     networks:
